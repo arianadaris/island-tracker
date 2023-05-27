@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 function Checkbox({ index, label }) {
+  // States
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -8,12 +9,12 @@ function Checkbox({ index, label }) {
   };
 
   return (
-    <label htmlFor="checkbox" className="flex items-center cursor-pointer">
+    <label htmlFor="checkbox" className="flex items-center cursor-pointer w-full" onClick={() => handleCheckboxChange()}>
       <input
+        className="task-inputs"
         type="checkbox"
         id={index}
         checked={isChecked}
-        onChange={handleCheckboxChange}
       />
       <span className="ml-2 text-brown">{ label }</span>
     </label>

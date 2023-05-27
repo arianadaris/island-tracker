@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { signupFields } from '../constants/formFields';
-import FormAction from '../components/FormAction';
-import Input from '../components/FormInput';
+import FormAction from '../components/AuthForm/FormAction';
+import Input from '../components/AuthForm/FormInput';
 import logo from '../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -30,12 +30,13 @@ const Signup = () => {
         // Handle Account creation
         let email = signupState["email-address"],
             password = signupState["password"],
-            username = signupState["username"];
+            username = signupState["username"],
+            tasks = [];
 
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password);
             const user = res.user;
-            const tasks = ["Water flowers", "Find fossils", "Collect seashells"];
+            // const tasks = ["Water flowers", "Find fossils", "Collect seashells"];
 
             var documentData = {
                 uid: user.uid,
@@ -47,7 +48,7 @@ const Signup = () => {
             }
 
             await setDoc(doc(db, "users/" + user.uid), documentData);
-            navigate('/');
+            navigate('/overview');
         }
         catch(err) {
             console.error(err)

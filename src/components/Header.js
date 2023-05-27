@@ -1,78 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { onAuthStateChanged } from 'firebase/auth';
-import { signOut } from 'firebase/auth';
-import { auth } from '../config/firebase';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 import logo from '../assets/logo.png';
 
+const loggedInLinks = {
+    "Overview": "/",
+    "Tasks": "/tasks",
+    "Account": "/account"
+}
+
+const loggedOutLinks = {
+    "Overview": "/",
+    "Login": "/login",
+    "Signup": "/signup"
+}
+
 const Header = () => {
+    // Check if logged in user
+    const { currentUser, logout } = useAuth();
+
     // Navigation
     const navigate = useNavigate();
 
-    // States
-    const [loggedIn, setLoggedIn] = useState(false);
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if(user) {
-                console.log(user.uid);
-                setLoggedIn(true);
-            }
-        });
-    });
-
     // Handle signout
     const handleSignout = async () => {
-        console.log('Signing out');
-        await signOut(auth);
-        navigate('/');
+        try {
+            console.log('Signing out')
+            await logout();
+            // Perform addition logout-related actions
+            navigate('/', { replace: true });
+        }
+        catch (error) {
+            console.log("Error logging out:", error);
+        }
     }
 
     return (
         <div className="flex items-center justify-between mb-6 px-12 py-2">
             <div className="flex space-x-4 items-center">
                 <img className="rounded-2xl h-20" src={logo} alt="Logo" />
-                <a className="text-2xl" href="/">Island Tracker</a>
+                <Link className="text-2xl" to="/">Island Tracker</Link>
             </div>
+            {/* Links */}
             <div className="flex space-x-12">
-                <div className="group relative">
-                    <a href="/">Overview</a>
-                    <div className="navItem-hover"></div>
-                </div>
-                <div className="group relative">
-                    <a href="/tasks">Tasks</a>
-                    <div className="navItem-hover"></div>
-                </div>
-                <div className="group relative">
-                    <a href="/">Villagers</a>
-                    <div className="navItem-hover"></div>
-                </div>
                 {
-                    loggedIn ?                 
-                    <div className="group relative">
-                        <a href="/account">Account</a>
-                        <div className="navItem-hover"></div>
-                    </div>
+                    currentUser ? 
+                    Object.entries(loggedInLinks).map(([key, value, index]) => (
+                        <div className="group relative" key={index}>
+                            <Link to={value}>{key}</Link>
+                            <div className="navItem-hover"></div>
+                        </div>
+                    ))
                     :
-                    <div className="group relative">
-                        <a href="/login">Login</a>
-                        <div className="navItem-hover"></div>
-                    </div>
+                    Object.entries(loggedOutLinks).map(([key, value, index]) => (
+                        <div className="group relative" key={index}>
+                            <Link to={value}>{key}</Link>
+                            <div className="navItem-hover"></div>
+                        </div>
+                    ))
                 }
+                {/* Logout Button */}
                 {
-                    loggedIn ?                 
-                    <div className="group relative cursor-pointer" onClick={() => handleSignout()}>
-                        <p className="text-lg">Log Out</p>
-                        <div className="navItem-hover"></div>
-                    </div>
+                    currentUser?
+                    <button className="mt-[-0.25rem]" onClick={() => handleSignout()}>
+                        Logout
+                    </button>
                     :
-                    <div className="group relative">
-                        <a href="/signup">Sign Up</a>
-                        <div className="navItem-hover"></div>
-                    </div>
+                    <>
+                    </>
                 }
             </div>
-
         </div>
     );
 };

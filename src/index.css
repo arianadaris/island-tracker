@@ -23,11 +23,15 @@
   }
 
   html {
-    @apply bg-lightBlue
+    @apply bg-white
   }
 
   h1 {
     @apply text-2xl
+  }
+
+  h3 {
+    @apply text-xl
   }
 
   a {
@@ -39,7 +43,7 @@
   }
 
   button {
-    @apply bg-yellow px-6 py-2 rounded-3xl
+    @apply bg-yellow px-6 py-2 rounded-3xl hover:bg-darkYellow
   }
 
   li {
@@ -47,12 +51,13 @@
   }
 
   input {
-    @apply outline-none
+    @apply outline-none 
   }
 
   input[type="checkbox"] {
-    @apply w-5 h-5 appearance-none rounded-full border-2 border-brown opacity-10 checked:opacity-100 hover:cursor-pointer
+    @apply w-5 h-5 appearance-none rounded-full border-2 border-brown/10 checked:border-brown hover:cursor-pointer
   }
+
 
   .navItem-hover {
     @apply w-full h-4 bg-darkYellow mt-[-0.75rem] absolute rounded-xl hidden group-hover:block z-[-1]

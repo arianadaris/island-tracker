@@ -19,19 +19,8 @@ const Home = () => {
 
     return (
         <Layout>
-            <div className="flex w-full space-x-4">
-                <div className="w-1/2 p-4">
-                    <h1>Home</h1>
-                    {
-                        loggedIn ? 
-                        <h1>Logged In!</h1>
-                        :
-                        <h1>Not logged in.</h1>
-                    }
-                </div>
-                <div className="w-1/2 p-4">
-
-                </div>
+            <div className="flex w-full space-x-4 px-12">
+                <h1>Hello World</h1>
             </div>
         </Layout>
     );

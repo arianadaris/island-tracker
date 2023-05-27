@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { loginFields } from '../constants/formFields';
-import Input from '../components/FormInput';
-import FormExtra from '../components/FormExtra';
-import FormAction from '../components/FormAction';
+import Input from '../components/AuthForm/FormInput';
+import FormExtra from '../components/AuthForm/FormExtra';
+import FormAction from '../components/AuthForm/FormAction';
 import logo from '../assets/logo.png';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase';
@@ -25,15 +25,12 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(loginState);
 
         // Handle Account login
         signInWithEmailAndPassword(auth, loginState["email-address"], loginState["password"])
-            .then((userCredential) => {
+            .then(() => {
                 // Signed in
-                const user = userCredential.user;
-                navigate('/');
-                console.log(user);
+                navigate('/overview');
             })
             .catch((error) => {
                 console.log(error.code, error.message);

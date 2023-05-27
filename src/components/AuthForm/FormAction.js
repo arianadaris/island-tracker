@@ -7,7 +7,7 @@ export default function FormAction({
                 type==="Button" ?
                 <button
                     type={action}
-                    className="my-4  group relative"
+                    className="my-4 group relative hover:bg-transparent"
                     onClick={handleSubmit}
                 >
                     <div className="bg-yellow w-full h-6 absolute left-1/2 transform -translate-x-1/2 p-4 rounded-xl z-[0] top-1"></div>
