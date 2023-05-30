@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { getAttribute, updateAttribute } from '../../utils/firebaseUtils';
 import { Icon } from '@iconify/react';
@@ -13,9 +13,19 @@ const VillagerSettings = () => {
     const [villagers, setVillagers] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
 
+    // const fetchAttribute = useCallback(async() => {
+    //     const firebaseVillagers = await getAttribute(currentUser.uid, "villagers");
+    //     setVillagers(firebaseVillagers);
+    // }, [currentUser.uid]);
+
     useEffect(() => {
+        const fetchAttribute = async () => {
+            const firebaseVillagers = await getAttribute(currentUser.uid, "villagers");
+            setVillagers(firebaseVillagers);
+        };
+
         fetchAttribute();
-    });
+    }, [currentUser.uid]);
 
     const handleOpenModal = () => {
         setIsOpen(true);
@@ -25,13 +35,8 @@ const VillagerSettings = () => {
         setIsOpen(false);
     };
 
-    const fetchAttribute = async() => {
-        const firebaseVillagers = await getAttribute(currentUser.uid, "villagers");
-        setVillagers(firebaseVillagers);
-    };
-
-    const onVillagerChange = () => {
-        fetchAttribute(currentUser.uid, "villagers");
+    const onVillagerChange = async () => {
+        console.log("Help");
     };
 
     const removeVillager = (villager) => {

@@ -18,7 +18,7 @@ const VillagerList = () => {
         }
 
         fetchAttribute();
-    });
+    }, [currentUser.uid]);
 
     const handleReset = () => {
         var checkboxes = document.getElementsByClassName('villager-inputs');
