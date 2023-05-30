@@ -5,13 +5,12 @@ import { useAuth } from '../contexts/AuthContext';
 import logo from '../assets/logo.png';
 
 const loggedInLinks = {
-    "Overview": "/",
-    "Tasks": "/tasks",
-    "Account": "/account"
+    "Overview": "/overview",
+    "Account": "/account",
 }
 
 const loggedOutLinks = {
-    "Overview": "/",
+    "About": "/about",
     "Login": "/login",
     "Signup": "/signup"
 }
@@ -40,20 +39,20 @@ const Header = () => {
         <div className="flex items-center justify-between mb-6 px-12 py-2">
             <div className="flex space-x-4 items-center">
                 <img className="rounded-2xl h-20" src={logo} alt="Logo" />
-                <Link className="text-2xl" to="/">Island Tracker</Link>
+                <Link className="text-2xl" to={currentUser ? "/overview" : "/"}>Island Tracker</Link>
             </div>
             {/* Links */}
             <div className="flex space-x-12">
                 {
                     currentUser ? 
-                    Object.entries(loggedInLinks).map(([key, value, index]) => (
+                    Object.entries(loggedInLinks).map(([key, value], index) => (
                         <div className="group relative" key={index}>
                             <Link to={value}>{key}</Link>
                             <div className="navItem-hover"></div>
                         </div>
                     ))
                     :
-                    Object.entries(loggedOutLinks).map(([key, value, index]) => (
+                    Object.entries(loggedOutLinks).map(([key, value], index) => (
                         <div className="group relative" key={index}>
                             <Link to={value}>{key}</Link>
                             <div className="navItem-hover"></div>

@@ -1,31 +1,25 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-import { getAttribute, updateAttribute } from '../../utils/firebaseUtils';
 import { Icon } from '@iconify/react';
+import { useFirebaseQuery, useFirebaseUpdateWithQuery } from '../../hooks/firebaseHooks';
 
 import Modal from '../Modal';
 import VillagerModal from './VillagerModal'
 
 const VillagerSettings = () => {
     const { currentUser } = useAuth();
+    const { data, isLoading, isError } = useFirebaseQuery();
+    const { update, isLoading: updateLoading, isError: updateError } = useFirebaseUpdateWithQuery();
 
     // States
     const [villagers, setVillagers] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
 
-    // const fetchAttribute = useCallback(async() => {
-    //     const firebaseVillagers = await getAttribute(currentUser.uid, "villagers");
-    //     setVillagers(firebaseVillagers);
-    // }, [currentUser.uid]);
-
     useEffect(() => {
-        const fetchAttribute = async () => {
-            const firebaseVillagers = await getAttribute(currentUser.uid, "villagers");
-            setVillagers(firebaseVillagers);
-        };
-
-        fetchAttribute();
-    }, [currentUser.uid]);
+        if (data) {
+            setVillagers(data.villagers);
+        }
+    }, [data]);
 
     const handleOpenModal = () => {
         setIsOpen(true);
@@ -35,14 +29,9 @@ const VillagerSettings = () => {
         setIsOpen(false);
     };
 
-    const onVillagerChange = async () => {
-        console.log("Help");
-    };
-
-    const removeVillager = (villager) => {
+    const removeVillager = async (villager) => {
         const updatedVillagers = villagers.filter(item => item !== villager);
-        updateAttribute(currentUser.uid, "villagers", updatedVillagers);
-        setVillagers(updatedVillagers);
+        await update({attribute: 'villagers', values: updatedVillagers});
     }
     
     return (
@@ -70,9 +59,10 @@ const VillagerSettings = () => {
                     <Icon className="w-7 h-7" icon="mingcute:add-fill" />
                 </div>
                 <Modal isOpen={isOpen} onClose={handleCloseModal}>
-                    <VillagerModal isOpen={isOpen} onVillagerChange={onVillagerChange} />
+                    <VillagerModal isOpen={isOpen} />
                 </Modal>
             </div>
+            <h1 className="bg-nookLeaf w-fit p-2 rounded-xl">Dream Villagers</h1>
         </div>
     )
 }

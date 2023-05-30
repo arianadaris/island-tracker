@@ -1,12 +1,16 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../config/firebase';
+import { useQueryClient } from 'react-query';
 
 // Create AuthContext
 const AuthContext = createContext();
 
 // AuthProvider component
 export const AuthProvider = ({ children }) => {
+    const queryClient = useQueryClient();
+
+    // States
     const [currentUser, setCurrentUser] = useState(null);
     const [logoutStatus, setLogoutStatus] = useState(false);
 
@@ -14,6 +18,7 @@ export const AuthProvider = ({ children }) => {
         try {
             await auth.signOut();
             // Perform additional logout-related actions
+            queryClient.invalidateQueries();
             setCurrentUser(null);
             setLogoutStatus(false);
         }

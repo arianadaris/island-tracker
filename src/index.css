@@ -23,7 +23,7 @@
   }
 
   html {
-    @apply bg-white
+    @apply bg-lightBlue/10
   }
 
   h1 {
@@ -61,5 +61,13 @@
 
   .navItem-hover {
     @apply w-full h-4 bg-darkYellow mt-[-0.75rem] absolute rounded-xl hidden group-hover:block z-[-1]
+  }
+
+  .divs {
+    @apply bg-teal/50 rounded-full p-1 outline outline-none
+  }
+
+  .selected {
+    @apply bg-nookLeaf bg-teal outline-darkTeal
   }
 }

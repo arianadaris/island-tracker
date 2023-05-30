@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
-import { useAuth } from '../../contexts/AuthContext';
-import { getAttribute, updateAttribute } from '../../utils/firebaseUtils';
+import { useFirebaseQuery, useFirebaseUpdateWithQuery } from '../../hooks/firebaseHooks';
 
 import Dropdown from '../Dropdown';
 
-const VillagerModal = ({ isOpen, onVillagerChange }) => {
-    const { currentUser } = useAuth();
+const VillagerModal = ({ isOpen }) => {
+    const { data, isLoading, isError } = useFirebaseQuery();
+    const { update, isLoading: updateLoading, isError: updateError } = useFirebaseUpdateWithQuery();
 
     // States
     const [villagers, setVillagers] = useState([]);
@@ -24,31 +24,24 @@ const VillagerModal = ({ isOpen, onVillagerChange }) => {
     
             fetchData();
         }
-    });
+    }, [isOpen, villagers.length]);
 
     const handleOptionSelect = (option) => {
         setSelectedOption(option);
     };
 
-    const addVillager = () => {
-        const fetchAndUpdate = async () => {
-            const firebaseVillagers = await getAttribute(currentUser.uid, "villagers");
-
+    const addVillager = async () => {
+        if (data) {
             const villagerData = villagers[selectedOption.id];
-            const result = {
+            const villager = {
                 "bday": villagerData.birthday,
                 "id": selectedOption.id,
                 "img": villagerData.icon_uri,
                 "name": selectedOption.name
             };
-            
-            const updatedVillagers = [...firebaseVillagers, result];
-
-            await updateAttribute(currentUser.uid, "villagers", updatedVillagers);
-            onVillagerChange();
-        };
-
-        fetchAndUpdate();
+            const updatedVillagers = [...data.villagers, villager];
+            await update({attribute: 'villagers', values: updatedVillagers});
+        }
     };
 
     return (

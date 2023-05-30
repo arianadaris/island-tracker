@@ -48,6 +48,11 @@ const Signup = () => {
             }
 
             await setDoc(doc(db, "users/" + user.uid), documentData);
+
+            // Load user data into local storage
+
+            
+
             navigate('/overview');
         }
         catch(err) {

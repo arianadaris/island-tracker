@@ -15,6 +15,7 @@ module.exports = {
         darkYellow: "#F7D359",
         yellow: "#F8EEBB",
         teal: "#7CC9C3",
+        darkTeal: "#219183",
         lightBlue: "#E2F3FF"
       },
       backgroundImage: {

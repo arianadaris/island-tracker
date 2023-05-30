@@ -1,42 +1,37 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
-import { useAuth } from '../../contexts/AuthContext';
-import { getAttribute, updateAttribute } from '../../utils/firebaseUtils';
+import { useFirebaseQuery, useFirebaseUpdateWithQuery } from '../../hooks/firebaseHooks';
 
-import Checkbox from './TaskCheckbox';
+import Checkbox from './Checkbox';
+import Input from './AddInput';
 
 const TaskList = () => {
-    const { currentUser } = useAuth();
+    const { data, isLoading, isError } = useFirebaseQuery();
+    const { update, isLoading: updateLoading, isError: updateError } = useFirebaseUpdateWithQuery();
 
     // States
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        const fetchAttribute = async () => {
-            const firebaseTasks = await getAttribute(currentUser.uid, "tasks");
-            setTasks(firebaseTasks);
+        if (data) {
+            setTasks(data.tasks);
         }
+    }, [data]);
 
-        fetchAttribute();
-    }, [currentUser.uid]);
-
-    // Refs
-    var addTaskBox = useRef();
-
-    const addTask = () => {
-        var taskName = addTaskBox.current.value;
+    const addTask = async (inputBox) => {
+        var taskName = inputBox.current.value;
         if (taskName !== '' && !tasks.includes(taskName)) {
-            const updatedTasks = [...tasks, taskName];
-            updateAttribute(currentUser.uid, "tasks", updatedTasks);
+            var updatedTasks = [...tasks, taskName];
+            await update({attribute: 'tasks', values: updatedTasks});
             setTasks(updatedTasks);
         }
 
-        addTaskBox.current.value = "";
+        inputBox.current.value = "";
     }
 
-    const removeTask = (taskName) => {
+    const removeTask = async (taskName) => {
         const updatedTasks = tasks.filter(item => item !== taskName);
-        updateAttribute(currentUser.uid, "tasks", updatedTasks);
+        await update({attribute: 'tasks', values: updatedTasks});
         setTasks(updatedTasks);
     }
 
@@ -47,18 +42,13 @@ const TaskList = () => {
     }
 
     return (
-        <div className="relative bg-lightBlue/20 w-7/8 h-fit pb-6 lg:ml-10 rounded-xl shadow-[0_4px_4px_rgba(0,0,0,0.1)]">
+        <div className="relative bg-white/60 w-7/8 h-fit pb-6 lg:ml-10 rounded-xl shadow-[0_4px_4px_rgba(0,0,0,0.1)]">
             <div className="bg-nookLeaf bg-clip-padding bg-cover p-4 rounded-t-xl">
                 <h1 className="text-center">Task Board</h1>
             </div>
             {/* List Div */}
             <ul className="flex flex-col space-y-3 px-14 py-6">
-                <li className="border-b-[1px] flex justify-between space-x-4">
-                    <input className="w-full bg-inherit" type="text" placeholder="Add a task..." ref={addTaskBox} />
-                    <button className="p-2 mb-1 hover:bg-darkYellow" onClick={() => addTask()}>
-                        <Icon icon="mingcute:add-fill" />
-                    </button>
-                </li>
+                <Input placeholder="Add a task..." onClickFunc={addTask} />
                 {
                     tasks.map((taskName, index) => (
                         <li className="flex justify-between space-x-4 group" key={index}>

@@ -1,29 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../config/firebase';
+import React from 'react';
 
 import Layout from '../components/Layout';
+import TaskList from '../components/Overview/TaskList';
+import VillagerList from '../components/Overview/VillagerList';
+import GoalsList from '../components/Overview/GoalsList';
 
-const Home = () => {
-    // States
-    const [loggedIn, setLoggedIn] = useState(false);
-
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // User is signed in
-                setLoggedIn(true);
-            }
-        });
-    });
-
+const Tasks = () => {
     return (
         <Layout>
-            <div className="flex w-full space-x-4 px-12">
-                <h1>Hello World</h1>
+            <div className="w-full flex space-x-4">
+                <div className="w-1/2 h-screen p-4">
+                    <TaskList />
+                </div>
+                <div className="w-1/2 h-screen p-4 pr-10 flex flex-col space-y-4">
+                    <VillagerList />
+                    <GoalsList />
+                </div>
             </div>
         </Layout>
     );
 };
 
-export default Home;
+export default Tasks;

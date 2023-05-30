@@ -15,6 +15,7 @@ function Checkbox({ index, label }) {
         type="checkbox"
         id={index}
         checked={isChecked}
+        readOnly
       />
       <span className="ml-2 text-brown">{ label }</span>
     </label>

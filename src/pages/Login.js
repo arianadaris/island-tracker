@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { loginFields } from '../constants/formFields';
 import Input from '../components/AuthForm/FormInput';
-import FormExtra from '../components/AuthForm/FormExtra';
 import FormAction from '../components/AuthForm/FormAction';
 import logo from '../assets/logo.png';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -29,7 +28,10 @@ const Login = () => {
         // Handle Account login
         signInWithEmailAndPassword(auth, loginState["email-address"], loginState["password"])
             .then(() => {
-                // Signed in
+                // Load user data into local storage
+                
+
+
                 navigate('/overview');
             })
             .catch((error) => {
@@ -62,7 +64,6 @@ const Login = () => {
                         />  
                     )
                 }
-                <FormExtra />
                 <FormAction handleSubmit={handleSubmit} text="Log in" />
             </div>
         </div>

@@ -10,8 +10,8 @@ const VillagerCheckbox = ({ image, name, id }) => {
 
     return (
         <div className="cursor-pointer flex flex-col space-y-1" onClick={handleCheckboxChange} key={id}>
-            <div className={isChecked ? 'rounded-full p-1 bg-teal/20' : 'rounded-full p-1 bg-teal/90'}>
-                <img className="w-20 h-20 rounded-full" src={image} alt={name} />
+            <div className={isChecked ? 'divs selected' : 'divs'}>
+                <img className="2xl:w-20 lg:w-14 rounded-full" src={image} alt={name} />
             </div>
             <label htmlFor="checkbox" className="flex flex-col space-y-1 justify-center items-center">
             <span className="text-brown">{name}</span>
@@ -20,6 +20,7 @@ const VillagerCheckbox = ({ image, name, id }) => {
                     type="checkbox"
                     id={id}
                     checked={isChecked}
+                    readOnly
                 />
             </label>
         </div>
