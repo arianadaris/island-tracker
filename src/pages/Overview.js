@@ -8,11 +8,11 @@ import GoalsList from '../components/Overview/GoalsList';
 const Tasks = () => {
     return (
         <Layout>
-            <div className="w-full flex space-x-4">
-                <div className="w-1/2 h-screen p-4">
+            <div className="w-full flex sm:flex-col xl:flex-row space-x-4">
+                <div className="xl:w-1/2 sm:w-full h-screen p-4">
                     <TaskList />
                 </div>
-                <div className="w-1/2 h-screen p-4 pr-10 flex flex-col space-y-4">
+                <div className="xl:w-1/2 sm:w-full h-screen p-4 pr-10 flex flex-col space-y-4">
                     <VillagerList />
                     <GoalsList />
                 </div>
