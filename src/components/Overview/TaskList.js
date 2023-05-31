@@ -42,7 +42,7 @@ const TaskList = () => {
     }
 
     return (
-        <div className="relative bg-white/60 w-7/8 h-fit pb-6 lg:ml-10 rounded-xl shadow-[0_4px_4px_rgba(0,0,0,0.1)]">
+        <div className="relative bg-white w-7/8 h-fit pb-6 lg:ml-10 rounded-xl shadow-[0_4px_4px_rgba(0,0,0,0.1)]">
             <div className="bg-nookLeaf bg-clip-padding bg-cover p-4 rounded-t-xl">
                 <h1 className="text-center">Task Board</h1>
             </div>

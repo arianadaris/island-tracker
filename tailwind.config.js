@@ -16,10 +16,12 @@ module.exports = {
         yellow: "#F8EEBB",
         teal: "#7CC9C3",
         darkTeal: "#219183",
-        lightBlue: "#E2F3FF"
+        lightBlue: "#E2F3FF",
+        lightTeal: "#b7e1de"
       },
       backgroundImage: {
-        "nookLeaf": "url('./assets/Background_NookLeaf.png')"
+        "nookLeaf": "url('./assets/Background_NookLeaf.png')",
+        "whiteNookLeaf": "url('./assets/Background_NookLeaf_White.jpg')"
       },
       display: ["group-hover"]
     },

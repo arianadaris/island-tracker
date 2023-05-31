@@ -19,11 +19,15 @@
 
 @layer base {
   * {
-    @apply font-seurat box-border m-0 p-0 text-brown transition-all
+    @apply font-seurat box-border m-0 p-0 transition-all
+  }
+
+  *:not(path) {
+    @apply text-brown
   }
 
   html {
-    @apply bg-lightBlue/10
+    @apply bg-nookLeaf bg-lightBlue bg-blend-soft-light
   }
 
   h1 {
@@ -31,7 +35,7 @@
   }
 
   h3 {
-    @apply text-xl
+    @apply text-lg
   }
 
   a {
@@ -51,7 +55,7 @@
   }
 
   input {
-    @apply outline-none 
+    @apply outline-none
   }
 
   input[type="checkbox"] {

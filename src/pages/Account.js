@@ -16,7 +16,7 @@ const Account = () => {
 
     return (
         <Layout>
-            <div className="w-full flex space-x-4 px-12">
+            <div className="w-full flex space-x-4 px-12 h-[60vh]">
                 <div className="2xl:w-1/4 lg:w-1/3 h-full p-8 flex flex-col space-y-8 bg-yellow rounded-xl">
                     {
                         sectionNames.map((name, index) => (
@@ -29,7 +29,7 @@ const Account = () => {
                         ))
                     }
                 </div>
-                <div className="w-full h-full bg-white/60 p-8 rounded-xl">
+                <div className="w-full h-full bg-white p-8 rounded-xl">
                     <div className={section === 0 ? 'block' : 'hidden'}>
                         <AccountSettings />
                     </div>

@@ -62,7 +62,6 @@ const VillagerSettings = () => {
                     <VillagerModal isOpen={isOpen} />
                 </Modal>
             </div>
-            <h1 className="bg-nookLeaf w-fit p-2 rounded-xl">Dream Villagers</h1>
         </div>
     )
 }
