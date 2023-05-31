@@ -35,6 +35,10 @@
 
 <h1></h1>
 
+<h4>To Dos</h4>
+  • Make it mobile friendly<br>
+  • Track bugs, fish, fossils<br>
+
 <h4>Installation & Set Up</h4>
 1. Install dependencies
 
