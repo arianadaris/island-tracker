@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+![IslandTracker_Header](https://github.com/arianadaris/island-tracker/assets/73635827/a4f0affa-946b-48fd-b85f-88a4b73d4135)
+<h1></h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h5 align="center">ReactJS / HTML/CSS / Firebase / REST API</h5>
+<h1 align="center">Island Tracker<br>
+  <a href="http://islandtracker.arianadaris.dev/" target="_blank"><img src="https://img.shields.io/badge/View Website-informational?style=flat&logo=java&logoColor=white&color=007C74" /></a>
+</h1>
 
-## Available Scripts
+<h3>An Animal Crossing website to track daily habits and goals.</h3>
 
-In the project directory, you can run:
+<h4>Overview</h4>
+<p>I created this project to learn how to create a user authenticatino system and manage a database by using cost-efficient practices. I also was learned how to implement CRUD operations with a database.</p>
 
-### `npm start`
+<h4>Impact</h4>
+  • Helps me remember all of my daily tasks, allowing me to mark completed tasks and reset the taskboard when I start a new day<br>
+  • Shows me the villagers in my town and whether I've talked to them or not<br>
+  • Reminds me of overall goals I want to acheive in my game<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<h4>Features</h4>
+  • Populates villager data using <a href="http://acnhapi.com/">Animal Crossing New Horizons API</a><br>
+  • Allows players to add, remove and reset taskboards and lists<br>
+  • Allows players to add and remove villagers to keep an accurate idea of who lives on their islands<br>
+  • Players can access their tasks and goals anywhere due to the account system<br>
+<h1></h1>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<h4>Project Images</h4>
 
-### `npm test`
+• Landing Page
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![IslandTracker_Landing](https://github.com/arianadaris/island-tracker/assets/73635827/d495b971-7dd3-4541-84da-5cdb464e46be)
 
-### `npm run build`
+• Taskboard Page
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![IslandTracker_Overview](https://github.com/arianadaris/island-tracker/assets/73635827/ec431aa7-e70b-4d64-b4cd-a9371174f3c2)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<h1></h1>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<h4>Installation & Set Up</h4>
+1. Install dependencies
 
-### `npm run eject`
+```sh
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Start the development server
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<h4>Building & Running for Production</h4>
+1. Generate a full static production build
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```sh
+npm build serve
+```
 
-## Learn More
+2. Preview the site as it will appear once deployed
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```sh
+npm build serve
+```
