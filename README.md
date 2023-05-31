@@ -1,7 +1,7 @@
 ![IslandTracker_Header](https://github.com/arianadaris/island-tracker/assets/73635827/a4f0affa-946b-48fd-b85f-88a4b73d4135)
 <h1></h1>
 
-<h5 align="center">ReactJS / HTML/CSS / Firebase / REST API</h5>
+<h5 align="center">ReactJS / TailwindCSS / Firebase / REST API</h5>
 <h1 align="center">Island Tracker<br>
   <a href="http://islandtracker.arianadaris.dev/" target="_blank"><img src="https://img.shields.io/badge/View Website-informational?style=flat&logo=java&logoColor=white&color=007C74" /></a>
 </h1>
